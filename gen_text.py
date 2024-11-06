@@ -4,7 +4,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_text(prompt):
-    response = openai.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",  # or use 'gpt-4-turbo' for the more efficient variant
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
