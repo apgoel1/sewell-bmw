@@ -15,8 +15,14 @@ def chat_gpt(prompt):
     )
     return response.choices[0].message.content
 
-excel_data1 = pd.read_excel("test.xlsx", sheet_name="Sheet1", header=None)
+excel_data1 = pd.read_excel("test.xlsx", sheet_name="Sheet1") # can add , header=None 
 
-#x = ["23, 45, 66, 44"]
-#print(chat_gpt(x[0] + " add these"))
+prompt = f"Analyze the following data and provide key insights and calculations:\n{excel_data1.to_string()}"
+
+f = open("result.txt", "w")
+#output = chat_gpt(prompt)
+#print(output, file=f)
+f.close()
+
+#print(chat_gpt(prompt))
 print (excel_data1)
