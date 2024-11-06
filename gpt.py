@@ -1,5 +1,6 @@
 from openai import OpenAI
 import os
+import pandas as pd
 
 client = OpenAI()
 
@@ -14,5 +15,8 @@ def chat_gpt(prompt):
     )
     return response.choices[0].message.content
 
-x = ["23, 45, 66, 44"]
-print(chat_gpt(x[0] + "add these"))
+excel_data1 = pd.read_excel("test.xlsx", sheet_name="Sheet1", header=None)
+
+#x = ["23, 45, 66, 44"]
+#print(chat_gpt(x[0] + " add these"))
+print (excel_data1)
