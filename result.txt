@@ -1,0 +1,25 @@
+To find the overlapping values between the two columns (col1 and col2), we can compare the unique values in each column and identify the common ones. 
+
+Here are the overlapping values between the two columns:
+
+- 159
+- 176
+- 204
+- 205
+- 241
+- 258
+- 275
+- 278
+- 290
+- 348
+- 391
+- 640
+- 682
+- 731
+- 740
+- 742
+- 874
+- 903
+- 920
+
+These values appear in both col1 and col2.
