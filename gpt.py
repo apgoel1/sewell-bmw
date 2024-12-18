@@ -25,4 +25,4 @@ print(output, file=f)
 f.close()
 
 #print(chat_gpt(prompt))
-#print (excel_data1)
+print (excel_data1)
