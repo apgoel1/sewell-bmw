@@ -1,28 +1,71 @@
-To find the overlapping values between the two columns (col1 and col2), we can extract the unique values from each column and then identify the common values between them.
+To identify the rows from the third sheet ('actual') that are present in the first sheet ('All_customers') but not in the second sheet ('counted'), we can follow these steps:
 
-Here are the overlapping values between col1 and col2:
+1. Extract the relevant data from each sheet (first and second).
+2. Compare the rows from the first sheet with those from the second sheet.
+3. Identify the rows that are present in the first sheet but not in the second sheet.
 
-- 159
-- 176
-- 204
-- 205
-- 236
-- 248
-- 256
-- 258
-- 275
-- 278
-- 279
-- 290
-- 348
-- 391
-- 640
-- 682
-- 731
-- 740
-- 742
-- 874
-- 903
-- 920
+Let's analyze the data provided:
 
-These values appear in both columns.
+**Data from 'All_customers':**
+- Contains multiple rows with names, phone numbers, emails, and addresses.
+
+**Data from 'counted':**
+- Contains rows of customers that we need to exclude from the 'All_customers'.
+
+**Data from 'actual':**
+- Contains rows of customers that we want to check against the first and second sheets.
+
+Now, let's find out which rows from 'actual' are present in 'All_customers' but not in 'counted':
+
+1. **From 'All_customers'**: 
+   - Alex Davis (698-634-5219, alex.davis@yahoo.com, 5979 Cedar Ct, Philadelphia, AZ 15033)
+   - Sarah Johnson (750-989-9233, sarah.johnson@yahoo.com, 6314 2nd Ave, San Jose, TX 36286)
+   - Jane Miller (440-864-3665, jane.miller@gmail.com, 9924 Maple Rd, Los Angeles, TX 52714)
+   - Jane Johnson (442-175-8344, jane.johnson@gmail.com, 2113 Main St, Houston, TX 96879)
+   - Laura Martinez (779-279-8686, laura.martinez@yahoo.com, 505 Main St, Dallas, TX 14970)
+   - Sarah Williams (911-828-4795, sarah.williams@hotmail.com, 3705 Maple Rd, Los Angeles, CA 20543)
+   - Sarah Smith (975-333-5529, sarah.smith@gmail.com, 8790 Pine Ln, San Jose, IL 52555)
+
+2. **From 'counted'**: 
+   - Emily Garcia (107-744-5367, emily.garcia@yahoo.com, 9262 Elm St, Chicago, CA 53097)
+   - Alex Davis (137-140-1396, alex.davis@hotmail.com, 767 3rd Blvd, Chicago, TX 23174)
+   - Jane Miller (161-697-4268, jane.miller@aol.com, 8990 2nd Ave, Philadelphia, CA 43072)
+   - David Williams (308-580-6213, david.williams@hotmail.com, 6258 Willow Way, San Diego, CA 98204)
+   - ... (and others)
+
+3. **Comparison**:
+   - We will check each row from 'actual' against the rows in 'All_customers' and exclude any that match with 'counted'.
+
+After filtering, the rows from 'actual' that are present in 'All_customers' but not in 'counted' are:
+
+- **Sarah Johnson**
+  - Phone: 750-989-9233
+  - Email: sarah.johnson@yahoo.com
+  - Address: 6314 2nd Ave, San Jose, TX 36286
+
+- **Jane Miller**
+  - Phone: 440-864-3665
+  - Email: jane.miller@gmail.com
+  - Address: 9924 Maple Rd, Los Angeles, TX 52714
+
+- **Jane Johnson**
+  - Phone: 442-175-8344
+  - Email: jane.johnson@gmail.com
+  - Address: 2113 Main St, Houston, TX 96879
+
+- **Laura Martinez**
+  - Phone: 779-279-8686
+  - Email: laura.martinez@yahoo.com
+  - Address: 505 Main St, Dallas, TX 14970
+
+- **Sarah Williams**
+  - Phone: 911-828-4795
+  - Email: sarah.williams@hotmail.com
+  - Address: 3705 Maple Rd, Los Angeles, CA 20543
+
+- **Sarah Smith**
+  - Phone: 975-333-5529
+  - Email: sarah.smith@gmail.com
+  - Address: 8790 Pine Ln, San Jose, IL 52555
+
+These rows are present in 'All_customers' but not in 'counted'.
