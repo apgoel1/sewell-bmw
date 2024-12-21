@@ -1,6 +1,7 @@
 from openai import OpenAI
 import os
 import pandas as pd
+import spacy
 
 client = OpenAI()
 
@@ -8,12 +9,17 @@ def chat_gpt(prompt):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "You are a number cruncher."},
+            {"role": "system", "content": "data analyzer"},
             {"role": "user", "content": prompt}],
         #max_tokens=1024,
         temperature=0.5
     )
     return response.choices[0].message.content
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 3000)
+
 
 #this is testing files
 excel_data1 = pd.read_excel("test.xlsx", sheet_name="Sheet1", header=0) # can add header=None 
@@ -29,13 +35,14 @@ cust_dict = {
     "actual": actual.to_json(orient="records"),
 }
 
-prompt = f"print all 3 sheets:\n{cust_dict}"
+prompt = f"how many people have the same name: \n{allcust}"
 
 f = open("result.txt", "w")
-output = chat_gpt(prompt)
-print(output, file=f)
+#output = chat_gpt(prompt)
+#print(output, file=f)
+#print(allcust, file=f)
 f.close()
 
 #print(output)
 #print (excel_data1.to_string())
-print (cust_dict)
+print (allcust)
