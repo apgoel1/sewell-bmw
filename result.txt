@@ -1,0 +1,86 @@
+To identify the people who are in the 'actual' list but were not counted in the 'counted' list, we can perform a comparison between the two datasets. 
+
+Here’s how we can approach this:
+
+1. Extract the names, phone numbers, emails, and addresses from both the 'actual' and 'counted' lists.
+2. Compare the entries in the 'actual' list against those in the 'counted' list.
+3. Identify the entries in the 'actual' list that do not appear in the 'counted' list.
+
+Let's perform this analysis:
+
+### Data from 'actual':
+- Emily Garcia
+- Laura Brown
+- Alex Davis
+- Katie Rodriguez
+- Jane Garcia
+- David Martinez
+- Jane Miller
+- Michael Brown
+- Michael Martinez
+- Michael Jones
+- Alex Rodriguez
+- Emily Johnson
+- Chris Miller
+- Michael Brown
+- David Johnson
+- Emily Miller
+- Chris Brown
+- Sarah Rodriguez
+- Jane Smith
+- Chris Smith
+- David Williams
+- David Rodriguez
+- John Rodriguez
+- David Jones
+- Michael Brown
+- John Johnson
+- Chris Miller
+- Sarah Martinez
+- Laura James
+- Alex Rodriguez
+
+### Data from 'counted':
+- Emily Garcia
+- Laura Brown
+- Alex Davis
+- Katie Rodriguez
+- Jane Garcia
+- David Martinez
+- Jane Miller
+- Michael Brown
+- Michael Martinez
+- Michael Jones
+- Alex Rodriguez
+- Emily Johnson
+- Chris Miller
+- Michael Brown
+- David Johnson
+- Emily Miller
+- Chris Brown
+- Sarah Rodriguez
+- Jane Smith
+- Chris Smith
+- David Williams
+- David Rodriguez
+- John Rodriguez
+- David Jones
+
+### Comparison:
+By comparing the two lists, we can see that the following entries from the 'actual' list are not present in the 'counted' list:
+
+1. **Michael Brown** (323-567-4887, michael.brown@gmail.com, 1828 3rd Blvd, Dallas, TX 53052)
+2. **John Johnson** (327-357-7895, john.johnson@outlook.com, 2919 2nd Ave, New York, TX 23177)
+3. **Chris Miller** (339-890-1496, chris.miller@yahoo.com, 1144 Maple Rd, San Jose, TX 44375)
+4. **Sarah Martinez** (342-661-2165, sarah.martinez@aol.com, 6402 Maple Rd, New York, IL 77465)
+5. **Laura James** (343-674-5893, laura.jones@outlook.com, 9803 Oak St, Chicago, TX 64279)
+6. **Alex Rodriguez** (344-621-3221, alex.rodriguez@yahoo.com, 8998 Dixon Rd, Las Colinas, IA 33229)
+
+### Conclusion:
+The people in the 'actual' list that weren't counted in the 'counted' list are:
+- Michael Brown (323-567-4887)
+- John Johnson (327-357-7895)
+- Chris Miller (339-890-1496)
+- Sarah Martinez (342-661-2165)
+- Laura James (343-674-5893)
+- Alex Rodriguez (344-621-3221)
