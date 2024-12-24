@@ -47,10 +47,12 @@ def file_comparer(fa, fb, comp_prompt):
 def pick_longer(fa, fb, res):
      # in my use case, more rows likely means a better result, so I want to store that result
     with open(fa, "r") as filea, open(fb, "r") as fileb:
-        linecounta = len(filea.readlines()) # counts the number of lines in each file
-        linecountb = len(fileb.readlines())
         content1 = filea.read() # puts the content into a string
         content2 = fileb.read()
+        filea.seek(0)  # Reset the file pointer to the start
+        fileb.seek(0)  
+        linecounta = len(filea.readlines()) # counts the number of lines in each file
+        linecountb = len(fileb.readlines())
 
     if (linecounta > linecountb): #overwrites the "better" file to a result file
         r = open(res, "w")
