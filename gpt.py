@@ -30,6 +30,21 @@ def chat_gpt_compare(prompt):
     )
     return response.choices[0].message.content
 
+# added this function to condense code
+def pick_longer(fa, fb, res):
+     # in my use case, more rows likely means a better result, so I want to store that result
+    with open(fa, "r") as filea, open(fb, "r") as fileb:
+        linecounta = len(filea.readlines()) # counts the number of lines in each file
+        linecountb = len(fileb.readlines())
+
+    if (linecounta > linecountb): #overwrites the "better" file to a result file
+        r = open(res, "w")
+        print(content1, file=r)
+        r.close()
+    else:
+        r = open(res, "w")
+        print(content2, file=r)
+        r.close()
 
 # removes white space from beginning and end of string
 def preprocess_column(column):
@@ -100,18 +115,7 @@ counter = 0 # initalizing counter for upcoming while loop
 while((yn[0] != "Y") and (counter < 3)):
 
     # in my use case, more rows likely means a better result, so I want to store that result
-    with open("A.txt", "r") as filea, open("B.txt", "r") as fileb:
-        linecounta = len(filea.readlines()) # counts the number of lines in each file
-        linecountb = len(fileb.readlines())
-    
-    if (linecounta > linecountb): #overwrites the "better" file to A
-        r = open("A.txt", "w")
-        print(content1, file=r)
-        r.close()
-    else:
-        r = open("A.txt", "w")
-        print(content2, file=r)
-        r.close()
+    pick_longer("A.txt", "B.txt", "A.txt")
 
     #generate another output and compare the original "good" one
     g = open("B.txt", "w")
@@ -127,18 +131,8 @@ while((yn[0] != "Y") and (counter < 3)):
     yn = chat_gpt_compare(compare_prompt) # gives a Yes or No
     counter += 1
 
-with open("A.txt", "r") as filea, open("B.txt", "r") as fileb:
-    linecounta = len(filea.readlines()) # counts the number of lines in each file
-    linecountb = len(fileb.readlines())
 
-if (linecounta > linecountb): #overwrites the "better" file to A
-    r = open("result.txt", "w")
-    print(content1, file=r)
-    r.close()
-else:
-    r = open("result.txt", "w")
-    print(content2, file=r)
-    r.close()
+pick_longer("A.txt", "B.txt", "result.txt")
 
 print(counter)
 

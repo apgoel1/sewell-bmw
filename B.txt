@@ -1,8 +1,8 @@
-| Name               | Phone        | Email                          | Address                               |
-|--------------------|--------------|--------------------------------|---------------------------------------|
-| Chris Miller       | 339-890-1496 | chris.miller@yahoo.com        | 1144 Maple Rd, San Jose, TX 44375   |
-| Michael Brown      | 323-567-4887 | michael.brown@gmail.com       | 1828 3rd Blvd, Dallas, TX 53052     |
-| John Johnson       | 327-357-7895 | john.johnson@outlook.com      | 2919 2nd Ave, New York, TX 23177    |
-| Sarah Martinez     | 342-661-2165 | sarah.martinez@aol.com       | 6402 Maple Rd, New York, IL 77465   |
-| Laura Jones        | 343-674-5893 | laura.jones@outlook.com       | 9803 Oak St, Chicago, TX 64279      |
-| Alex Rodriguez     | 344-621-3221 | alex.rodriguez@yahoo.com      | 1943 Willow Way, Los Angeles, NY 54154 |
+| Name               | Phone         | Email                          | Address                                |
+|--------------------|---------------|--------------------------------|----------------------------------------|
+| Michael Brown      | 323-567-4887  | michael.brown@gmail.com       | 1828 3rd Blvd, Dallas, TX 53052      |
+| John Johnson       | 327-357-7895  | john.johnson@outlook.com      | 2919 2nd Ave, New York, TX 23177     |
+| Chris Miller       | 339-890-1496  | chris.miller@yahoo.com        | 1144 Maple Rd, San Jose, TX 44375    |
+| Sarah Martinez     | 342-661-2165  | sarah.martinez@aol.com       | 6402 Maple Rd, New York, IL 77465    |
+| Laura Jones        | 343-674-5893  | laura.jones@outlook.com       | 9803 Oak St, Chicago, TX 64279       |
+| Alex Rodriguez     | 344-621-3221  | alex.rodriguez@yahoo.com      | 1943 Willow Way, Los Angeles, NY 54154|
