@@ -1,7 +1,7 @@
 from openai import OpenAI
 import os
 import pandas as pd
-#import spacy
+#import spacy # used for nlp and similarity score (semantic/meaning based)
 import time
 
 starttime = time.time() # gets start time (used for total elapsed time)
@@ -19,6 +19,7 @@ def chat_gpt(prompt):
     )
     return response.choices[0].message.content
 
+# making a separate function for this is ok because it helps ensure consistency and role/temperature values
 def chat_gpt_compare(prompt):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -30,12 +31,26 @@ def chat_gpt_compare(prompt):
     )
     return response.choices[0].message.content
 
+def file_comparer(fa, fb, comp_prompt):
+    # comparing the first and second iterations
+    with open(fa, "r") as filea, open(fb, "r") as fileb:
+        content1 = filea.read()
+        content2 = fileb.read()
+    # if they are the same, it is more likely that gpt did not make a mistake (but still very possible)
+    prompt = f"{comp_prompt} \n{content1} \n{content2}"
+    # compare the two results from running the gpt twice
+    answer = chat_gpt_compare(prompt) # gives a Yes or No
+
+    return answer
+
 # added this function to condense code
 def pick_longer(fa, fb, res):
      # in my use case, more rows likely means a better result, so I want to store that result
     with open(fa, "r") as filea, open(fb, "r") as fileb:
         linecounta = len(filea.readlines()) # counts the number of lines in each file
         linecountb = len(fileb.readlines())
+        content1 = filea.read() # puts the content into a string
+        content2 = fileb.read()
 
     if (linecounta > linecountb): #overwrites the "better" file to a result file
         r = open(res, "w")
@@ -46,19 +61,10 @@ def pick_longer(fa, fb, res):
         print(content2, file=r)
         r.close()
 
-# removes white space from beginning and end of string
-def preprocess_column(column):
-    return column.str.strip().str.lower()
-
 #displays the full pandas dataframe rather than truncating
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 3000)
-
-
-#this is testing files
-excel_data1 = pd.read_excel("test.xlsx", sheet_name="Sheet1", header=0) # can add header=None 
-data_dict = excel_data1.to_dict(orient="list")
 
 #converting all the sheets into pandas for analysis
 allcust = pd.read_excel("Random_Contact_List.xlsx", sheet_name="All_customers", header=0)
@@ -68,19 +74,12 @@ actual = pd.read_excel("Random_Contact_List.xlsx", sheet_name="30_actual", heade
 # can use this to print specific values from data frame
 #print (allcust["Name"][10])
 
-# ai used for similarity (semantic/meaning based)
-#nlp = spacy.load("en_core_web_md")
-#doc1 = nlp("a")
-#doc2 = nlp("z")
-#print(doc1.similarity(doc2))
-
 #dictionary makes it easier for gpt to analyze
 cust_dict = {
     "All_customers": allcust,
     "counted": counted,
     "actual": actual,
 }
-
 
 main_prompt = f"identify the people who are in actual that weren't counted that are also part of allcust. only 2 fields must match: \n{cust_dict}"
 main_promptg = f"how many unique names in allcust?: \n{cust_dict}"
@@ -98,16 +97,10 @@ outputB = chat_gpt(main_prompt)
 print(outputB, file=g)
 g.close()
 
-# comparing the first and second iterations
-with open("A.txt", "r") as filea, open("B.txt", "r") as fileb:
-    content1 = filea.read()
-    content2 = fileb.read()
-
 # if they are the same, it is more likely that gpt did not make a mistake (but still very possible)
-compare_prompt = f"Is the information presented in these two files essentially the same? \n{content1} \n{content2}"
-
-# compare the two results from running the gpt twice
-yn = chat_gpt_compare(compare_prompt) # gives a Yes or No
+compare_prompt = f"Is the information presented in these two files essentially the same?"
+# comparing the first and second iterations
+yn = file_comparer("A.txt", "B.txt", compare_prompt)
 
 counter = 0 # initalizing counter for upcoming while loop
 
@@ -124,11 +117,7 @@ while((yn[0] != "Y") and (counter < 3)):
     g.close()
 
     #continues to compare the two files until they are the same
-    with open("A.txt", "r") as filea, open("B.txt", "r") as fileb:
-        content1 = filea.read()
-        content2 = fileb.read()
-    compare_prompt = f"Is the information presented in these two files essentially the same? \n{content1} \n{content2}"
-    yn = chat_gpt_compare(compare_prompt) # gives a Yes or No
+    yn = file_comparer("A.txt", "B.txt", compare_prompt)
     counter += 1
 
 
