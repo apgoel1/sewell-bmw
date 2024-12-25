@@ -118,7 +118,7 @@ while((yn[0] != "Y") and (counter < 3)):
     print(outputB, file=g)
     g.close()
 
-    #continues to compare the two files until they are the same
+    #continues to compare the two files until they are the same or the counter reaches a certain number
     yn = file_comparer("A.txt", "B.txt", compare_prompt)
     counter += 1
 
