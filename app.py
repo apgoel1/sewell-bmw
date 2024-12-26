@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
-#import os
+import os
 from openai import OpenAI
 import time
-from io import StringIO
 
 starttime = time.time()
 # Initialize OpenAI client
@@ -62,6 +61,11 @@ uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
 if uploaded_file:
     st.success("File uploaded successfully!")
 
+    #displays the full pandas dataframe rather than truncating
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.width', 3000)
+
     # Read Excel file into Pandas dataframes
     allcust = pd.read_excel(uploaded_file, sheet_name="All_customers", header=0)
     counted = pd.read_excel(uploaded_file, sheet_name="24_counted", header=0)
@@ -74,7 +78,9 @@ if uploaded_file:
         "actual": actual,
     }
 
-    main_prompt = f"Identify the people who are in actual that weren't counted but are in allcust. Only 2 fields must match:\n{cust_dict}"
+    main_prompt = f"identify the people who are in actual that weren't counted that are also part of allcust. only 2 fields must match: \n{cust_dict}"
+    main_promptg = f"how many unique names in allcust?: \n{cust_dict}"
+
 
     # Process with OpenAI GPT
     if st.button("Analyze"):
@@ -111,7 +117,14 @@ if uploaded_file:
         st.write("### Result")
         st.text(result_content)
 
-    # Show elapsed runtime
-    endtime = time.time()
-    st.write(f"Elapsed time: {endtime - starttime} seconds")
-    #st.download_button("Download Result", result_content, "result.xlsx")
+         # Show elapsed runtime
+        endtime = time.time()
+        st.write(f"Elapsed time: {endtime - starttime} seconds")
+        if (counter == 3):
+            st.warning('''
+                       Consider running program again for better result  
+                       If this occurs again, GPT could be having difficulty working with the data and may not be perfect
+                       ''')
+        st.download_button("Download Result", result_content, "result.xlsx")
+    else:
+        st.write("Press 'Analyze' button to start")
