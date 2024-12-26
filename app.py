@@ -54,6 +54,9 @@ def pick_longer(fa, fb, res):
 # Streamlit App
 st.title("Customer Analysis Tool")
 st.write("Upload an Excel file to analyze customer data.")
+# want to add a section here about entering user's own names for the sheets in the file
+# maybe even allow the user to enter their own prompt (or select from a few exisiting options (drop down menu))
+
 
 # File Upload Section
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
