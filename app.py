@@ -128,6 +128,6 @@ if uploaded_file:
                        Consider running program again for better result  
                        If this occurs again, GPT could be having difficulty working with the data and may not be perfect
                        ''')
-        st.download_button("Download Result", result_content, "result.xlsx")
+        st.download_button("Download Result", result_content, "final_result.txt")
     else:
         st.write("Press 'Analyze' button to start")
